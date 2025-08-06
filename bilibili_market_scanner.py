@@ -184,18 +184,18 @@ class BilibiliMarketScanner:
         print(f"\n=== 扫描结果摘要 ===")
         print(f"共找到 {len(self.matched_items)} 件匹配商品")
         
-        sorted_items = sorted(self.matched_items, key=lambda x: x.get('price', float('inf')))
+        sorted_items = sorted(self.matched_items, key=lambda x: float(x.get('showPrice', '0').replace('¥', '').replace(',', '')) if x.get('showPrice') and x.get('showPrice') != 'N/A' else float('inf'))
         
         print("\n商品列表:")
         for item in sorted_items:
             name = item.get('c2cItemsName', 'N/A')
             item_id = item.get('c2cItemsId', 'N/A')
-            price = item.get('price', 'N/A')
+            price = item.get('showPrice', 'N/A')
             print(f"- {name} (ID: {item_id}) - 价格: {price}")
             
         if sorted_items:
             min_price_item = sorted_items[0]
-            print(f"\n最低价商品: {min_price_item.get('c2cItemsName', 'N/A')} - 价格: {min_price_item.get('price', 'N/A')}")
+            print(f"\n最低价商品: {min_price_item.get('c2cItemsName', 'N/A')} - 价格: {min_price_item.get('showPrice', 'N/A')}")
 
 
 def main():
@@ -209,7 +209,7 @@ def main():
             if not cookies:
                 print("错误: cookies不能为空")
                 continue
-            
+            print("")
             keywords_input = input("请输入搜索关键词(多个关键词用逗号分隔): ").strip()
             if not keywords_input:
                 print("错误: 关键词不能为空")
