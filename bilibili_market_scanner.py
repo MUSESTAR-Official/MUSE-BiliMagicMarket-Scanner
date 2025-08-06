@@ -215,7 +215,7 @@ def main():
                 print("错误: 关键词不能为空")
                 continue
             
-            keywords = [kw.strip() for kw in keywords_input.split(',') if kw.strip()]
+            keywords = [kw.strip() for kw in re.split('[,，]', keywords_input) if kw.strip()]
             
             scanner = BilibiliMarketScanner()
             scanner.set_cookies(cookies)
