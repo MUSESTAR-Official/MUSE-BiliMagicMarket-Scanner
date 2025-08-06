@@ -205,7 +205,7 @@ def main():
             print("本程序将扫描所有B站魔力赏市集商品，找出符合关键词的商品")
             print("扫描结果将保存到: 市集扫描结果.json")
             print("")
-            cookies = input("请输入您的cookies: ").strip()
+            cookies = input("请输入您的B站cookies: ").strip()
             if not cookies:
                 print("错误: cookies不能为空")
                 continue
