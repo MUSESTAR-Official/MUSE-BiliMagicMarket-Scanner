@@ -220,7 +220,7 @@ def main():
             scanner = BilibiliMarketScanner()
             scanner.set_cookies(cookies)
             
-            print(f"\n开始扫描，关键词: {', '.join(keywords)}")
+            print(f"\n准备扫描，关键词: {', '.join(keywords)}")
             print("按 Ctrl+C 可以随时停止扫描\n")
             
             results = scanner.scan_market(keywords)
